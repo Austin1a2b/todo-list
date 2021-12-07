@@ -58,16 +58,31 @@ app.get('/todos/:id/edit', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
     .lean()
-    .then((todo) => res.render('edit', { todo }))
+    .then((todo) => {
+      console.log(todo.isDone)
+      res.render('edit', { todo })
+    })
+    .then((todo) => {
+      console.log(todo.isDone)
+    })
     .catch(error => console.log(error))
 })
 
 app.post('/todos/:id/edit', (req, res) => {
   const id = req.params.id
-  const name = req.body.name
+  const { name, isDone } = req.body
+  // 上面的寫法 應用了  "解構賦值" 的語法
   return Todo.findById(id)
     .then(todo => {
       todo.name = name
+      // 因checkbox 的回傳值 是 on /或是不帶值 , 而不是回傳ture /false ,
+      // if (isDone === 'on') {
+      //   todo.isDone = true
+      // } else {
+      //   todo.isDone = false
+      // }
+      // 因為最後 等於的值 為ture/false   根據這個邏輯 也可以寫為 下一行方式
+      todo.isDone = isDone === 'on'
       return todo.save()
     })
     .then(() => res.redirect(`/todos/${id}`))

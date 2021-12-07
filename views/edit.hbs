@@ -1,4 +1,6 @@
 <form action="/todos/{{ todo._id }}/edit" method="POST">
+  <input type="checkbox" name="isDone" {{#if todo.isDone}} checked {{/if}}>
+  <!-- {{#if todo.isDone}} checked{{/if}}   todo.isDone 為布林值, 所以 如果為ture 則會加入 checked ,若為false 則不加入中間的內容 -->
   <input type="text" placeholder="name" name="name" value="{{ todo.name }}">
   <button type="submit">Save</button>
   <a href="/">back</a>

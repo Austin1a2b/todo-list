@@ -7,6 +7,7 @@ require('./config/mongoose')
 
 const app = express()
 
+
 app.engine('hbs', exphdbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))  //後續才能用 req.body.

@@ -1,22 +1,30 @@
-<ul class="list-group">
-  {{#each todos}}
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-auto me-auto">
-        <input style="vertical-align: middle;" type="checkbox" name="isDone" {{#if this.isDone }} checked {{/if}}
-          disabled>
-        <h4 style="display: inline; vertical-align: middle;">
-          {{ this.name }}
-        </h4>
-      </div>
-      <div class="col-auto">
-        <a class="btn btn-secondary" href="./todos/{{ this._id }}">detail</a>
-        <a class="btn btn-success" href="./todos/{{ this._id }}/edit">edit</a>
-        <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-          <button class="btn btn-danger" type="submit">delete</button>
-        </form>
-      </div>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+  <header>
+    <nav class="navbar navbar-dark justify-content-between" style="padding: 8px 16px;
+    background-color: #e95420;">
+      <a class="navbar-brand" href="/">Todo List</a>
+      <a class="btn btn-outline-light" href="/todos/new">Create</a>
+    </nav>
+  </header>
+  <main>
+    <div class="container mt-3">
+      {{{ body }}}
     </div>
-  </li>
-  {{/each}}
-</ul>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
